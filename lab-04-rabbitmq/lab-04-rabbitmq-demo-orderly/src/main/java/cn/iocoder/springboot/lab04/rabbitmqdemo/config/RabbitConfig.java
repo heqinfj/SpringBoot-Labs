@@ -60,6 +60,16 @@ public class RabbitConfig {
             return BindingBuilder.bind(demo10Queue3()).to(demo10Exchange()).with("3");
         }
 
+
+        //方案2 没有拆分Queue
+        @Bean
+        public Queue demo10Queue() {
+            return new Queue(Demo10Message.QUEUE);
+        }
+        @Bean
+        public Binding demo10Binding() {
+            return BindingBuilder.bind(demo10Queue()).to(demo10Exchange()).with(Demo10Message.ROUTING_KEY);
+        }
     }
 
 }

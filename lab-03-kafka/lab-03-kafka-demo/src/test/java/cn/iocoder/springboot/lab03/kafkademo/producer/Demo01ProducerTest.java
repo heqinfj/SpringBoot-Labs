@@ -18,10 +18,20 @@ import java.util.concurrent.ExecutionException;
 @SpringBootTest(classes = Application.class)
 public class Demo01ProducerTest {
 
+    //SLF4J方式
     private Logger logger = LoggerFactory.getLogger(getClass());
+
+    //Java Logging方式
+    private java.util.logging.Logger LOG = java.util.logging.Logger.getLogger(Demo01ProducerTest.class.getName());
 
     @Autowired
     private Demo01Producer producer;
+
+    @Test
+    public void testJul(){
+        LOG.info("This is an info message!");
+        LOG.severe("This is an error message!");
+    }
 
     @Test
     public void testSyncSend() throws ExecutionException, InterruptedException {
@@ -45,11 +55,12 @@ public class Demo01ProducerTest {
 
             @Override
             public void onSuccess(SendResult<Object, Object> result) {
+                logger.info("回调方法处-验证这里输出的线程名为{}",Thread.currentThread().getName());
                 logger.info("[testASyncSend][发送编号：[{}] 发送成功，结果为：[{}]]", id, result);
             }
 
         });
-
+        logger.info("主方法处-验证这里输出的线程名为{}",Thread.currentThread().getName());
         // 阻塞等待，保证消费
         new CountDownLatch(1).await();
     }

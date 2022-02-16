@@ -21,7 +21,7 @@ public class Demo12Consumer {
     @RabbitHandler
     public void onMessage(Demo12Message message, Channel channel,
                           @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) throws IOException {
-        logger.info("[onMessage][线程编号:{} 消息内容：{}]", Thread.currentThread().getId(), message);
+        logger.info("[onMessage][线程编号:{} 消息内容：{} deliveryTag：{}]", Thread.currentThread().getId(), message, deliveryTag);
         // 提交消费进度
         if (message.getId() % 2 == 1) {
             // ack 确认消息

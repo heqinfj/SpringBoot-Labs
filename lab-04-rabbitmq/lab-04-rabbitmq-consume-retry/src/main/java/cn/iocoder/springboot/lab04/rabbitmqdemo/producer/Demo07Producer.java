@@ -16,7 +16,7 @@ public class Demo07Producer {
         Demo07Message message = new Demo07Message();
         message.setId(id);
         // 同步发送消息
-        rabbitTemplate.convertAndSend(Demo07Message.EXCHANGE, Demo07Message.ROUTING_KEY, message);
+        rabbitTemplate.convertAndSend(Demo07Message.EXCHANGE + "222222", Demo07Message.ROUTING_KEY, message);
     }
 
 }

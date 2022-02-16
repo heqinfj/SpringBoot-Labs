@@ -1,8 +1,16 @@
 spring:
   # RabbitMQ 配置项，对应 RabbitProperties 配置类
   rabbitmq:
-    host: 127.0.0.1 # RabbitMQ 服务的地址
-    port: 5672 # RabbitMQ 服务的端口
-    username: guest # RabbitMQ 服务的账号
-    password: guest # RabbitMQ 服务的密码
+    #host: 127.0.0.1 # RabbitMQ 服务的地址
+    #port: 5672 # RabbitMQ 服务的端口
+    # 集群节点
+    addresses: proxy.heqin.aliyun.com:5672,proxy.heqin.aliyun.com:5673,proxy.heqin.aliyun.com:5674
+    username: admin # RabbitMQ 服务的账号
+    password: pass.123 # RabbitMQ 服务的密码
     publisher-confirm-type: simple # 设置 Confirm 类型为 SIMPLE 。
+#日志框架配置
+logging:
+  level:
+    root: INFO #没有特殊设置日志级别的包名，则使用这边的日志级别
+  pattern:
+    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{100} - %msg%n)'

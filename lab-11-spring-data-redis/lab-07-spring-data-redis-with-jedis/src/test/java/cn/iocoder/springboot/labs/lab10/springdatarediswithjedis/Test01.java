@@ -36,18 +36,30 @@ public class Test01 {
 
     @Test
     public void testStringSetKeyUserCache() {
-        UserCacheObject object = new UserCacheObject()
+        Object targetObject = null;
+        UserCacheObject userCacheObject = new UserCacheObject()
                 .setId(1)
                 .setName("芋道源码")
                 .setGender(1); // 男
-        String key = String.format("user:%d", object.getId());
-        redisTemplate.opsForValue().set(key, object);
+        String key = String.format("user:%d", userCacheObject.getId());
+
+        //测试设置对象 UserCacheObject
+        targetObject = userCacheObject;
+
+        //测试设置List
+//        List<UserCacheObject> list = new ArrayList<>();
+//        list.add(userCacheObject);
+//        targetObject = list;
+
+        redisTemplate.opsForValue().set(key, targetObject);
     }
 
     @Test
     public void testStringGetKeyUserCache() {
         String key = String.format("user:%d", 1);
         Object value = redisTemplate.opsForValue().get(key);
+        //List<UserCacheObject> list = (List<UserCacheObject>)value;
+        UserCacheObject userCacheObject = (UserCacheObject)value;
         System.out.println(value);
     }
 

@@ -41,4 +41,9 @@ public class Demo08ProducerTest {
         new CountDownLatch(1).await();
     }
 
+    @Test
+    public void testEmpty(){
+        //空方法启动，触发消费端消费
+    }
+
 }

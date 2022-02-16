@@ -33,4 +33,17 @@ public class Demo10ProducerTest {
         new CountDownLatch(1).await();
     }
 
+    @Test
+    public void testSyncSendNotSplitQueue() throws InterruptedException {
+        for (int i = 0; i < 2; i++) {
+            for (int id = 0; id < 4; id++) {
+                producer.syncSendNotSplitQueue(id);
+//            logger.info("[testSyncSendNotSplitQueue][发送编号：[{}] 发送成功]", id);
+            }
+        }
+
+        // 阻塞等待，保证消费
+        new CountDownLatch(1).await();
+    }
+
 }

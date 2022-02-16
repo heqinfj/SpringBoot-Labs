@@ -13,12 +13,12 @@
         <!-- Spring Boot 示例 -->
 <!--        <module>lab-01-spring-security</module>-->
 <!--        <module>lab-02-spring-security-oauth</module>-->
-<!--        <module>lab-03-kafka</module>-->
-<!--        <module>lab-04-rabbitmq</module>-->
+        <module>lab-03-kafka</module>
+        <module>lab-04-rabbitmq</module>
 <!--        <module>lab-05-benchmark-tomcat-jetty-undertow</module>-->
 <!--        <module>lab-06</module>-->
 <!--        <module>lab-07</module>-->
-<!--        <module>lab-11-spring-data-redis</module>-->
+        <module>lab-11-spring-data-redis</module>
         <module>lab-12-mybatis</module>
 <!--        <module>lab-13-spring-data-jpa</module>-->
 <!--        <module>lab-14-spring-jdbc-template</module>-->
@@ -104,8 +104,8 @@
 <!--        <module>labx-22</module>-->
 <!--        <module>labx-23</module>-->
 <!--        <module>labx-24</module>-->
-<!--        <module>labx-25</module>-->
-<!--        <module>labx-26</module>-->
+        <module>labx-25</module>
+        <module>labx-26</module>
 <!--        <module>labx-27</module>-->
 <!--        <module>labx-28</module>-->
 <!--        <module>labx-28</module>-->

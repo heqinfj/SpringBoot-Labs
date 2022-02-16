@@ -41,7 +41,14 @@ public class Demo13Producer {
 
             @Override
             public void handle(long deliveryTag, boolean multiple) throws IOException {
-                logger.info("[handle][Confirm 成功]");
+                logger.info("[handle][Confirm 处理中。。。]");
+//                try {
+//                    //模拟耗时
+//                    Thread.sleep(5000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+                logger.info("[handle][Confirm 成功],deliveryTag:{},muliple:{}",deliveryTag,multiple);
             }
 
         }, new ConfirmCallback() {

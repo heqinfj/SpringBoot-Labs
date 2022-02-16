@@ -14,6 +14,10 @@ public class Demo10Message implements Serializable {
 
     public static final String EXCHANGE = "EXCHANGE_DEMO_10";
 
+    //测试方案2
+    public static final String QUEUE = "QUEUE_DEMO_10";
+    public static final String ROUTING_KEY = "ROUTING_KEY_10";
+
     /**
      * 编号
      */

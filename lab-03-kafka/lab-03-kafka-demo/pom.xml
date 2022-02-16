@@ -27,10 +27,33 @@
             同时，spring-boot-starter-json 引入了 spring-boot-starter ，而 spring-boot-starter 又引入了 spring-boot-autoconfigure 。
             spring-boot-autoconfigure 实现了 Spring-Kafka 的自动化配置
          -->
+        <!-- springboot 默认使用的是 Logback https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.logging-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-json</artifactId>
         </dependency>
+
+        <!--
+        使用自定义日志：Log4j2
+        当我们使用任何 spring boot starter 时，Logback 依赖 spring-boot-starter-logging 默认在 classpath 中解析。
+        要使用 Log4j2，我们需要将其排除并包含 spring-boot-starter-log4j2，如下所示。
+        https://www.concretepage.com/spring-boot/spring-boot-logging-example#log4j2
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-json</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+        -->
 
         <!-- 方便等会写单元测试 -->
         <dependency>

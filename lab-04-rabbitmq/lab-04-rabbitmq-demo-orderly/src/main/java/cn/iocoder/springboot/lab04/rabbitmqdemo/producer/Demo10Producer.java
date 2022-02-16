@@ -23,4 +23,16 @@ public class Demo10Producer {
         return String.valueOf(id % Demo10Message.QUEUE_COUNT);
     }
 
+    /**
+     * 没有折分Queue的方案2测试
+     * @param id
+     */
+    public void syncSendNotSplitQueue(Integer id){
+        // 创建 Demo10Message 消息
+        Demo10Message message = new Demo10Message();
+        message.setId(id);
+        // 同步发送消息
+        rabbitTemplate.convertAndSend(Demo10Message.EXCHANGE, Demo10Message.ROUTING_KEY, message);
+    }
+
 }

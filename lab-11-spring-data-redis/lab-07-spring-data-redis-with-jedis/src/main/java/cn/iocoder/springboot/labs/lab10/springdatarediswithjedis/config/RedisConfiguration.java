@@ -1,12 +1,16 @@
 package cn.iocoder.springboot.labs.lab10.springdatarediswithjedis.config;
 
 import cn.iocoder.springboot.labs.lab10.springdatarediswithjedis.listener.TestChannelTopicMessageListener;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 
 @Configuration
@@ -27,8 +31,28 @@ public class RedisConfiguration {
         template.setKeySerializer(RedisSerializer.string());
 
         // 使用 JSON 序列化方式（库是 Jackson ），序列化 VALUE 。
+
+        //<1>使用 GenericJackson2JsonRedisSerializer 推荐使用这个
         template.setValueSerializer(RedisSerializer.json());
+
+        //<2>使用 Jackson2JsonRedisSerializer
+        //template.setValueSerializer(buildJackson2JsonRedisSerializer());
         return template;
+    }
+
+    /**
+     * Jackson2JsonRedisSerializer
+     *
+     * @return
+     */
+    private Jackson2JsonRedisSerializer buildJackson2JsonRedisSerializer() {
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        //https://guozh.net/genericjackson2jsonredisserializer-vs-jackson2jsonredisserializer/
+        objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
+        return jackson2JsonRedisSerializer;
     }
 
     //        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);

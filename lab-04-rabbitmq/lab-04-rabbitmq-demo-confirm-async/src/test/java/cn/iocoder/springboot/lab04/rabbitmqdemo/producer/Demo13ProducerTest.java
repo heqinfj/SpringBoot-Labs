@@ -31,6 +31,16 @@ public class Demo13ProducerTest {
     }
 
     @Test
+    public void testSyncSendNack() throws InterruptedException {
+        int id = (int) (System.currentTimeMillis() / 1000);
+        producer.syncSendNack(id);
+        logger.info("[testSyncSendNack][发送编号：[{}] 发送成功]", id);
+
+        // 阻塞等待，保证消费
+        new CountDownLatch(1).await();
+    }
+
+    @Test
     public void testSyncSendReturn() throws InterruptedException {
         int id = (int) (System.currentTimeMillis() / 1000);
         producer.syncSendReturn(id);

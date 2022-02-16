@@ -9,6 +9,7 @@ import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -43,7 +44,7 @@ public class DemoConsumerApplication {
         private LoadBalancerClient loadBalancerClient;
 
         @GetMapping("/hello")
-        public String hello(String name) {
+        public String hello(@RequestParam("name") String name) {
             // 获得服务 `demo-provider` 的一个实例
             ServiceInstance instance;
             if (true) {

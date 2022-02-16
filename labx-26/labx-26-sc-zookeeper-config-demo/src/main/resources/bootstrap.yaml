@@ -1,10 +1,14 @@
 spring:
   application:
     name: demo-application
+  profiles:
+    active: prod
+
 
   cloud:
     zookeeper:
-      connect-string: 127.0.0.1:2181
+      #指定zookeeper的地址,多个用逗号拼接
+      connect-string: proxy.heqin.aliyun.com:2181,proxy.heqin.aliyun.com:2182,proxy.heqin.aliyun.com:2183
       # Zookeeper 作为配置中心的配置项，对应 ZookeeperConfigProperties 配置类
       config:
         root: /config # Zookeeper 数据存储的根节点，默认为 /config

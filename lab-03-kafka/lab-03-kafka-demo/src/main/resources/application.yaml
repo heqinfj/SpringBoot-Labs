@@ -1,7 +1,7 @@
 spring:
   # Kafka 配置项，对应 KafkaProperties 配置类
   kafka:
-    bootstrap-servers: 127.0.0.1:9092 # 指定 Kafka Broker 地址，可以设置多个，以逗号分隔
+    bootstrap-servers: proxy.heqin.aliyun.com:9092,proxy.heqin.aliyun.com:9093,proxy.heqin.aliyun.com:9094 # 指定 Kafka Broker 地址，可以设置多个，以逗号分隔
     # Kafka Producer 配置项
     producer:
       acks: 1 # 0-不应答。1-leader 应答。all-所有 leader 和 follower 应答。
@@ -21,11 +21,22 @@ spring:
     # Kafka Consumer Listener 监听器配置
     listener:
       missing-topics-fatal: false # 消费监听接口监听的主题不存在时，默认会报错。所以通过设置为 false ，解决报错
-
+# 参考Spring Boot Logging Example https://www.concretepage.com/spring-boot/spring-boot-logging-example
 logging:
   level:
+    root: INFO #没有特殊设置日志级别的包名，则使用这边的日志级别
     org:
       springframework:
         kafka: ERROR # spring-kafka INFO 日志太多了，所以我们限制只打印 ERROR 级别
       apache:
         kafka: ERROR # kafka INFO 日志太多了，所以我们限制只打印 ERROR 级别
+  file:
+    #name: mylogfile.log  #指定文件名或同时指定路径，如：mylogfile.log、mydir/logs/mylogfile.log
+    path: mydir/logs #没有指定上面的name，只指定这个path，最终形成的文件路径是：mydir/logs/spring.log
+  pattern:
+    #console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{30} - %msg%n)'
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{30} - %msg%n'
+    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{30} - %msg%n'
+
+#debug: true
+#trace: true

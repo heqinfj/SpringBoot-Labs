@@ -1,0 +1,4 @@
+### 测试 /hello
+GET http://localhost:28080/hello?name={{username}}
+Accept: application/json
+
