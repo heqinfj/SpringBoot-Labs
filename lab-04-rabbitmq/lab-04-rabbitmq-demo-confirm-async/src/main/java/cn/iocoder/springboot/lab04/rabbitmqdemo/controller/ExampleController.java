@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
@@ -72,5 +74,16 @@ public class ExampleController {
         Map<String, Object> map = model.asMap();
         System.out.println(map);
         return "hello controller advice";
+    }
+
+    /**
+     * 测试spring MVC请求的序列化与反序列化
+     *
+     * @return
+     */
+    @RequestMapping(value = "/testSpringMVCSerializationAndDeserialization",method = RequestMethod.POST)
+    public ServerResponse testSpringMVCSerializationAndDeserialization(@RequestBody User user){
+        System.out.println(user);
+        return ServerResponse.success("成功接收数据");
     }
 }

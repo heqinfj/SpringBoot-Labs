@@ -23,4 +23,4 @@ logging:
 #mdc实现全链路调用日志跟踪
 mcdWholeLinkLogTrace:
   # 拦截实现方式 Aop、Filter、Interceptor
-  interceptWay: Aop
+  interceptWay: Interceptor

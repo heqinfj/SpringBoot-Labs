@@ -29,8 +29,10 @@ public class SpringMVCConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        LogInterceptor logInterceptor = logInterceptor();
+        LogInterceptor logInterceptor = logInterceptor();//正确的写法：这样获取LogInterceptor的注入属性testComponent有值
+        //LogInterceptor logInterceptor = new LogInterceptor();//有坑的写法：这样获取LogInterceptor的注入属性testComponent为null
         if(logInterceptor != null){
+            logInterceptor.printTestComponent();
             registry.addInterceptor(logInterceptor()).addPathPatterns("/**");
         }
     }
