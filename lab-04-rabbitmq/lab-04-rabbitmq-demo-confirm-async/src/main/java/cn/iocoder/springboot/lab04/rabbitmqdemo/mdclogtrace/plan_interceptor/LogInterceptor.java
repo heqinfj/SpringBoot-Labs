@@ -50,7 +50,7 @@ public class LogInterceptor implements HandlerInterceptor {
         //调用结束后删除
         MDC.remove(Constants.TRACE_ID);
         //todo test
-        test(response);
+        //test(response);
     }
 
     private void test(HttpServletResponse response) throws Exception{
